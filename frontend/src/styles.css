@@ -2,12 +2,11 @@
     margin-top: 5px;
 }
 
-.page-container {
-    width: 60%;
+.auth-page-container {
+    width: 45vw;
     position: relative;
     top: 10%;
     left: 20%;
-    border: 1px solid black;
     height: 90vh;
     padding: 5px;
 }

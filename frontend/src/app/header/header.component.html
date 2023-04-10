@@ -1,10 +1,13 @@
-<div class="row">
+<div class="row app-header">
     <div class="col-lg-10 col-md-10 col-12">
-        <h4>Hello {{(user$|async)?.name}}</h4>
+        <form class="search-form">
+            <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </div>
     <div class="col-lg-2 col-md-2 col-12">
         <div class="pull-right">
-            <button type="button" class="btn btn-danger btn-sm" (click)="signOut()">Sign Out</button>
+            <!--<button type="button" class="btn btn-danger btn-sm" (click)="signOut()">Sign Out</button>-->
         </div>
     </div>
 </div>

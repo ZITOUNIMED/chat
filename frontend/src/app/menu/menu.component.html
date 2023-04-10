@@ -1,7 +1,46 @@
-<h4>Menu</h4>
-    <ul>
-        <li>Group 1</li>
-        <li>Group 2</li>
-        <li>Group 3</li>
-        <li>Group 4</li>
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light menu">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <span class="fs-4">Chat App</span>
+    </a>
+    <hr>
+    <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong>{{(user$|async)?.name}}</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+          <li><a class="dropdown-item" href="#">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item"  [routerLink]="" (click)="signOut()">Sign out</a></li>
+        </ul>
+      </div>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto groups">
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+          Group 1
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link active link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+          Group 2
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+          Group 3
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+          Group 4
+        </a>
+      </li>
     </ul>
+  </div>
