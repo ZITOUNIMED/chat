@@ -1,0 +1,17 @@
+.actions {
+    margin-top: 5px;
+}
+
+.page-container {
+    width: 60%;
+    position: relative;
+    top: 10%;
+    left: 20%;
+    border: 1px solid black;
+    height: 90vh;
+    padding: 5px;
+}
+
+.pull-right {
+    float: right;
+}

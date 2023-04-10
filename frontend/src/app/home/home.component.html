@@ -1,0 +1,27 @@
+<div class="row">
+ <div class="col-lg-2 col-md-2 col-12">
+    <app-menu></app-menu>
+ </div>
+ <div class="col-lg-10 col-md-10 col-12">
+    <div class="row">
+        <app-header (signOutchange)="signOut($event)"></app-header>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-12">
+            <div>
+                <app-message [uuid]="(user$|async)?.uuid"></app-message>
+            </div>
+            <div class="message-list">
+                <div *ngFor="let message of last10Messages">
+                    <label>{{message.user?.name}}</label>&nbsp;<em>at {{message.timestamp | date: 'short'}}</em>
+                    <div>{{message.content}}</div>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-12">
+           <app-notifications></app-notifications>
+        </div>
+    </div>
+ </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-12">
+        <h4>Hello {{(user$|async)?.name}}</h4>
+    </div>
+    <div class="col-lg-2 col-md-2 col-12">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger btn-sm" (click)="signOut()">Sign Out</button>
+        </div>
+    </div>
+</div>
