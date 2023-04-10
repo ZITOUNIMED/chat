@@ -1,6 +1,6 @@
 # chat
 ## Frontend
-$ cd frontend
+$ cd frontend\n
 $ npm install
 $ npm start
 
