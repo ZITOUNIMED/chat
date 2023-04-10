@@ -1,12 +1,12 @@
 # chat
 ## Frontend
-$ cd frontend\n
-$ npm install
-$ npm start
-
-You can open the frontend on http://localhost:4200/
-
+$ cd frontend<br/>
+$ npm install<br/>
+$ npm start<br/>
+<br/>
+You can open the frontend on http://localhost:4200/<br/>
+<br/>
 ## Backend
-$ cd backend
-$ mvn clean install
-open the project in an IDE and execute the application or use java -jar target/chat*.jar to run the backend
+$ cd backend<br/>
+$ mvn clean install<br/>
+and to run the backend you can open the project in an IDE and execute the application or use the command line java -jar target/chat*.jar
