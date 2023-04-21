@@ -1,6 +1,7 @@
 package med.zitouni.chat.entities;
 
 import java.time.Instant;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -49,5 +50,22 @@ public class Message {
 
 	public void setTimestamp(Instant timestamp) {
 		this.timestamp = timestamp;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(uuid);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Message other = (Message) obj;
+		return Objects.equals(uuid, other.uuid);
 	}
 }

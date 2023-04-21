@@ -7,10 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import med.zitouni.chat.entities.Group;
+import med.zitouni.chat.entities.Message;
 
 @Repository
 public interface GroupRepository extends JpaRepository<Group, String>{
 	Optional<Group> findByAdminUuid(String uuid);
 	Optional<Group> findByCreatorUuid(String uuid);
+	List<Message> getMessages();
 	// List<Group> findByUserUuid(String uuid);
 }
