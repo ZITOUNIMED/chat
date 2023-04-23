@@ -72,7 +72,7 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public List<Message> getLast10Messages(String groupUuid) {
 		List<Message> messages = null;
-		if(!StringUtils.isEmpty(groupUuid)) {
+		if(groupUuid != null && groupUuid.trim() != "" && !groupUuid.equals("null")) {
 			messages = messageRepository.findByGroupUuid(groupUuid);
 		} else {
 			messages = messageRepository.findByGroupUuid(null);

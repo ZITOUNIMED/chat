@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import med.zitouni.chat.dao.GroupRepository;
 import med.zitouni.chat.dao.UserRepository;
@@ -49,13 +50,13 @@ public class GroupServiceImpl implements GroupService {
 	@Override
 	public Set<Group> getUserGroups(String userUuid) {
 		Set<Group> groups = new HashSet<>();
-		Optional<Group> optionalAdmin = groupRepository.findByAdminUuid(userUuid);
-		Optional<Group> optionalCreator = groupRepository.findByCreatorUuid(userUuid);
-		if(optionalAdmin.isPresent()) {
-			groups.add(optionalAdmin.get());
+		Set<Group> adminGroups = groupRepository.findByAdminUuid(userUuid);
+		Set<Group> creatorGroups = groupRepository.findByCreatorUuid(userUuid);
+		if(!CollectionUtils.isEmpty(adminGroups)) {
+			groups.addAll(adminGroups);
 		}
-		if(optionalCreator.isPresent()) {
-			groups.add(optionalCreator.get());
+		if(!CollectionUtils.isEmpty(creatorGroups)) {
+			groups.addAll(creatorGroups);
 		}
 		return groups;
 	}

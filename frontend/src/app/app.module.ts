@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -15,6 +16,7 @@ import { AppHttpInterceptor } from './services/app-http-interceptor';
 import { HeaderComponent } from './header/header.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { MenuComponent } from './menu/menu.component';
+import { AddGroupModalComponent } from './modals/add-group-modal/add-group-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +27,15 @@ import { MenuComponent } from './menu/menu.component';
     MessageComponent,
     HeaderComponent,
     NotificationsComponent,
-    MenuComponent
+    MenuComponent,
+    AddGroupModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
     StoreModule.forRoot(appReducer),
   ],
   providers: [

@@ -24,8 +24,8 @@ export class MessagesService {
         return this.http.post(this.url + '/post', request);
     }
 
-    getLast10Messages(): Observable<Message[]> {
-        return this.http.get<Message[]>(this.url + '/last-10');
+    getLast10Messages(groupUuid: string|null): Observable<Message[]> {
+        return this.http.get<Message[]>(this.url + `/last-10/${groupUuid}`);
     }
 
     subscribeUser(uuid: string, behaviorSubject$: BehaviorSubject<Message>): EventSource {

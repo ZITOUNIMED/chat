@@ -37,9 +37,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getLast10Messages();
     this.subscribeUser();
     this.watchMessagesChanges();
+    this.getLast10Messages();
   }
 
   private watchMessagesChanges(): void {
@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit {
   }
 
   private getLast10Messages(): void {
-    this.messagesService.getLast10Messages()
+    this.messagesService.getLast10Messages(null)
     .subscribe(messages => (this.last10Messages = messages));
   }
 

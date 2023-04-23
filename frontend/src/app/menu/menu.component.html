@@ -18,29 +18,11 @@
       </div>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto groups">
-      <li><strong>Groups:</strong>&nbsp;<button class="btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button></li>
-      <li>
+      <li><strong>Groups:</strong>&nbsp;<button (click)="openAddGroupModal()" class="btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button></li>
+      <li *ngFor="let group of groups">
         <a href="#" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-          Group 1
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link active link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-          Group 2
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-          Group 3
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-          Group 4
+          {{group.name}}
         </a>
       </li>
     </ul>

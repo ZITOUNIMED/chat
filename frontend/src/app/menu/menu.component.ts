@@ -3,6 +3,11 @@ import { Observable, map } from 'rxjs';
 import { AppState } from '../store/states/app.state';
 import { Store } from '@ngrx/store';
 import { User } from '../models/user.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddGroupModalComponent } from '../modals/add-group-modal/add-group-modal.component';
+import { GroupsService } from '../services/groups.service';
+import { AddGroup } from '../models/add-group.model';
+import { GroupModel } from '../models/group.model';
 
 @Component({
   selector: 'app-menu',
@@ -11,9 +16,13 @@ import { User } from '../models/user.model';
 })
 export class MenuComponent implements OnInit {
   user$: Observable<User>;
+  userUuid: string = '';
   @Output() signOutchange = new EventEmitter<boolean>();
+  groups: GroupModel[] = [];
 
-  constructor(private store: Store<AppState>) { 
+  constructor(private store: Store<AppState>, 
+    private modalService: NgbModal,
+    private groupsService: GroupsService) { 
     this.user$ = this.store.select(state => state.user).pipe(
       map(userState => {
         const user: User = {
@@ -28,6 +37,42 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user$.subscribe(user => {
+      this.userUuid = user.uuid;
+      if(this.userUuid){
+        this.getUserGroups();
+      }
+    })
+  }
+
+  getUserGroups(): void {
+    this.groupsService.getUserGroups(this.userUuid)
+    .subscribe(groups => {
+      this.groups = groups;
+    })
+  }
+
+  openAddGroupModal(): void {
+    const modalRef  = this.modalService.open(AddGroupModalComponent);
+    modalRef.result.then((name) => {
+      if(name){
+        this.saveGroup(name);
+      }
+    }, (reason) => {
+      console.log(reason);
+    });
+  }
+
+  saveGroup(name: string): void {
+    const resuest: AddGroup = {
+      name,
+      userUuid: this.userUuid
+    };
+
+    this.groupsService.addGroup(resuest)
+    .subscribe(() => {
+      this.getUserGroups();
+    })
   }
 
   signOut(): void {

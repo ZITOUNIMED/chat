@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add group</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="mb-3">
+            <div class="form-floating">
+                <input type="text" [formControl]="groupName" class="form-control" id="name" placeholder="Group Name">
+                <label for="name">Group Name</label>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" [disabled]="groupName.invalid" class="btn btn-outline-dark" (click)="saveGroup()">Save</button>
+</div>
