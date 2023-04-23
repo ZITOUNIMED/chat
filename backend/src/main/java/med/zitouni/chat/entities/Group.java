@@ -10,10 +10,11 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
 @Entity
+@Table(name = "chat_groups")
 public class Group {
 	@Id
 	private String uuid;
@@ -23,24 +24,16 @@ public class Group {
 					 CascadeType.PERSIST,
 			         CascadeType.MERGE
 			        })
-	@JoinTable(name = "groups_users",
-    joinColumns = { @JoinColumn(name = "group_uuid") },
-    inverseJoinColumns = { @JoinColumn(name = "user_uuid") })
+	@JoinTable(name = "chat_groups_users",
+    joinColumns = { @JoinColumn(name = "chat_group_uuid") },
+    inverseJoinColumns = { @JoinColumn(name = "chat_user_uuid") })
 	private List<User> users;
-	
-	@OneToMany(fetch = FetchType.LAZY,
-			cascade = { 
-					 CascadeType.PERSIST,
-			         CascadeType.MERGE
-			        })
-	@JoinColumn(name = "group_uuid", referencedColumnName = "uuid")
-	private List<Message> messages;
 	
 	private String name;
 	
-	private User admin;
+	private String adminUuid;
 	
-	private User creator;
+	private String creatorUuid;
 	
 	private Instant createdAt;
 
@@ -60,14 +53,6 @@ public class Group {
 		this.users = users;
 	}
 
-	public List<Message> getMessages() {
-		return messages;
-	}
-
-	public void setMessages(List<Message> messages) {
-		this.messages = messages;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -76,20 +61,20 @@ public class Group {
 		this.name = name;
 	}
 
-	public User getAdmin() {
-		return admin;
+	public String getAdminUuid() {
+		return adminUuid;
 	}
 
-	public void setAdmin(User admin) {
-		this.admin = admin;
+	public void setAdminUuid(String adminUuid) {
+		this.adminUuid = adminUuid;
 	}
 
-	public User getCreator() {
-		return creator;
+	public String getCreatorUuid() {
+		return creatorUuid;
 	}
 
-	public void setCreator(User creator) {
-		this.creator = creator;
+	public void setCreatorUuid(String creatorUuid) {
+		this.creatorUuid = creatorUuid;
 	}
 
 	public Instant getCreatedAt() {

@@ -16,6 +16,9 @@ public class Message {
 	@ManyToOne
 	private User user;
 	
+	@ManyToOne
+	private Group group;
+	
 	private String content;
 	
 	private Instant timestamp;
@@ -38,6 +41,14 @@ public class Message {
 	
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public Group getGroup() {
+		return group;
+	}
+	
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 
 	public void setContent(String content) {

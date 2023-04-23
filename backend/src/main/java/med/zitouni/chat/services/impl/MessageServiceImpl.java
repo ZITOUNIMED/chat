@@ -9,10 +9,13 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import med.zitouni.chat.dao.GroupRepository;
 import med.zitouni.chat.dao.MessageRepository;
 import med.zitouni.chat.dao.UserRepository;
 import med.zitouni.chat.dto.PostMessageDTO;
+import med.zitouni.chat.entities.Group;
 import med.zitouni.chat.entities.Message;
 import med.zitouni.chat.entities.User;
 import med.zitouni.chat.exceptions.FonctionalException;
@@ -25,13 +28,15 @@ public class MessageServiceImpl implements MessageService{
 	private final MessageRepository messageRepository;
 	private final UserRepository userRepository;
 	private final NotificationsService notificationsService;
+	private final GroupRepository groupRepository;
 	
 	public MessageServiceImpl(MessageRepository messageRepository,
 			UserRepository userRepository,
-			NotificationsService notificationsService) {
+			NotificationsService notificationsService, GroupRepository groupRepository) {
 		this.messageRepository = messageRepository;
 		this.userRepository = userRepository;
 		this.notificationsService = notificationsService;
+		this.groupRepository = groupRepository;
 	}
 	
 	@Override
@@ -44,6 +49,16 @@ public class MessageServiceImpl implements MessageService{
 		
 		Message message  = new Message();
 		
+		if(!StringUtils.isEmpty(request.getGroupUuid())) {
+			Optional<Group> optionalGroup = groupRepository.findById(request.getGroupUuid());
+			
+			if(optionalGroup.isEmpty()) {
+				throw new FonctionalException("Group does not exist!");
+			}
+			
+			message.setGroup(optionalGroup.get());
+		}
+		
 		message.setContent(request.getMessage());
 		message.setUser(optional.get());
 		message.setTimestamp(Instant.now());
@@ -55,9 +70,14 @@ public class MessageServiceImpl implements MessageService{
 	}
 
 	@Override
-	public List<Message> getLast10Messages() {
-		//List<Message> messages = messageRepository.findTopByOrderByTimestampDesc();
-		List<Message> messages = messageRepository.findAll();
+	public List<Message> getLast10Messages(String groupUuid) {
+		List<Message> messages = null;
+		if(!StringUtils.isEmpty(groupUuid)) {
+			messages = messageRepository.findByGroupUuid(groupUuid);
+		} else {
+			messages = messageRepository.findByGroupUuid(null);
+		}
+		
 		return messages.stream().sorted((m1, m2) -> m1.getTimestamp()
 				.isAfter(m2.getTimestamp()) ? -1 : 1)
 				.limit(10)

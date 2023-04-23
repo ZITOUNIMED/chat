@@ -48,9 +48,9 @@ public class MessagesController {
 		messageService.postMessage(request);
 	}
 	
-	@GetMapping("/last-10")
-	public List<Message> getLast10Messages(){
-		return messageService.getLast10Messages();
+	@GetMapping("/last-10/{groupUuid}")
+	public List<Message> getLast10Messages(@PathVariable() String groupUuid){
+		return messageService.getLast10Messages(groupUuid);
 	}
 
 }

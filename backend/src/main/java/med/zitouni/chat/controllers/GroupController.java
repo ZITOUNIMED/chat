@@ -1,6 +1,5 @@
 package med.zitouni.chat.controllers;
 
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import med.zitouni.chat.dto.AddGroupDTO;
 import med.zitouni.chat.dto.AddUserToGroupDTO;
-import med.zitouni.chat.dto.PostMessageToGroupDTO;
 import med.zitouni.chat.entities.Group;
-import med.zitouni.chat.entities.Message;
 import med.zitouni.chat.services.GroupService;
 
 @RestController
@@ -36,18 +33,8 @@ public class GroupController {
 		groupService.addUserToGroup(dto.getUserUuid(), dto.getGroupUuid());
 	}
 	
-	@PostMapping("/post-message")
-	public void postMessage(@RequestBody PostMessageToGroupDTO dto) {
-		groupService.postMessage(dto.getUserUuid(), dto.getGroupUuid(), dto.getContent());
-	}
-	
 	@GetMapping("/user-groups/{userUuid}")
 	public Set<Group> getUserGroups(@PathVariable() String  userUuid) {
 		return groupService.getUserGroups(userUuid);
-	}
-	
-	@GetMapping("/last-10-group-messages/{uuid}")
-	public List<Message> getLast10Messages(@PathVariable() String uuid) {
-		return groupService.getLast10Messages(uuid);
 	}
 }

@@ -9,5 +9,5 @@ public interface MessageService {
 
 	public void postMessage(PostMessageDTO request);
 	
-	public List<Message> getLast10Messages();
+	public List<Message> getLast10Messages(String groupUuid);
 }
