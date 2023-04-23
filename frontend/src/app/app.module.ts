@@ -17,6 +17,8 @@ import { HeaderComponent } from './header/header.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { MenuComponent } from './menu/menu.component';
 import { AddGroupModalComponent } from './modals/add-group-modal/add-group-modal.component';
+import { GroupsComponent } from './groups/groups.component';
+import { CommunicationsComponent } from './communications/communications.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { AddGroupModalComponent } from './modals/add-group-modal/add-group-modal
     HeaderComponent,
     NotificationsComponent,
     MenuComponent,
-    AddGroupModalComponent
+    AddGroupModalComponent,
+    GroupsComponent,
+    CommunicationsComponent
   ],
   imports: [
     BrowserModule,

@@ -18,12 +18,24 @@
       </div>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto groups">
-      <li><strong>Groups:</strong>&nbsp;<button (click)="openAddGroupModal()" class="btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button></li>
+      <li class="title-groups"><strong>Groups:</strong>&nbsp;<button (click)="openAddGroupModal()" class="btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button></li>
       <li *ngFor="let group of groups">
-        <a href="#" class="nav-link link-dark">
+        <a href="#" (click)="openGroup(group)" class="nav-link link-dark" [ngClass]="{'active': selectedGroupUuid === group.uuid}">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
           {{group.name}}
         </a>
       </li>
+     <!-- <li>
+        <a href="#" (click)="openGroup('test 1', 'test name 1')" class="nav-link link-dark" [ngClass]="{'active': selectedGroupUuid === 'test 1'}">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+          test 1
+        </a>
+      </li>
+      <li>
+        <a href="#" (click)="openGroup('test 2', 'test name 2')" class="nav-link link-dark" [ngClass]="{'active': selectedGroupUuid === 'test 2'}">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+          test 2
+        </a>
+      </li>-->
     </ul>
   </div>

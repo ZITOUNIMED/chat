@@ -10,7 +10,8 @@ import { MessagesService } from 'src/app/services/messages.service';
 })
 export class MessageComponent implements OnInit {
   messageCtrl = new FormControl('', [Validators.required, Validators.maxLength(255)]);
-  @Input() uuid?: string|null = '';
+  @Input() userUuid?: string|null = '';
+  @Input() groupUuid?: string|null = '';
   constructor(private messagesService: MessagesService) { }
 
   ngOnInit(): void {
@@ -21,7 +22,8 @@ export class MessageComponent implements OnInit {
       const message = this.messageCtrl.value;
       const request: PostMessage = {
         message,
-        userUuid: this.uuid
+        userUuid: this.userUuid,
+        groupUuid: this.groupUuid
       };
 
       this.messagesService.postMessage(request).subscribe(()=> {

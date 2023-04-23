@@ -1,0 +1,10 @@
+<div>
+    <app-message [userUuid]="userUuid" [groupUuid]="groupUuid"></app-message>
+</div>
+<div class="message-list">
+    <div *ngFor="let message of last10Messages">
+        <label>{{message.user?.name}}</label>&nbsp;<em>at {{message.timestamp | date: 'short'}}</em>
+        <div>{{message.content}}</div>
+        <hr/>
+    </div>
+</div>

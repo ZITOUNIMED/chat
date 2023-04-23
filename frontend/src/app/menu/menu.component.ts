@@ -8,6 +8,7 @@ import { AddGroupModalComponent } from '../modals/add-group-modal/add-group-moda
 import { GroupsService } from '../services/groups.service';
 import { AddGroup } from '../models/add-group.model';
 import { GroupModel } from '../models/group.model';
+import { GroupAcions } from '../store/states/group/actions';
 
 @Component({
   selector: 'app-menu',
@@ -19,6 +20,7 @@ export class MenuComponent implements OnInit {
   userUuid: string = '';
   @Output() signOutchange = new EventEmitter<boolean>();
   groups: GroupModel[] = [];
+  selectedGroupUuid: string = '';
 
   constructor(private store: Store<AppState>, 
     private modalService: NgbModal,
@@ -73,6 +75,11 @@ export class MenuComponent implements OnInit {
     .subscribe(() => {
       this.getUserGroups();
     })
+  }
+
+  openGroup(group: GroupModel): void {
+    this.selectedGroupUuid = group.uuid;
+    this.store.dispatch(GroupAcions.SetGroupAction(group));
   }
 
   signOut(): void {

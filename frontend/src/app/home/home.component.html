@@ -8,16 +8,21 @@
     </div>
     <div class="row">
         <div class="col-lg-10 col-md-10 col-12">
-            <div>
-                <app-message [uuid]="(user$|async)?.uuid"></app-message>
-            </div>
-            <div class="message-list">
-                <div *ngFor="let message of last10Messages">
-                    <label>{{message.user?.name}}</label>&nbsp;<em>at {{message.timestamp | date: 'short'}}</em>
-                    <div>{{message.content}}</div>
-                    <hr/>
-                </div>
-            </div>
+            <ng-container [ngSwitch]="page">
+                <ng-container *ngSwitchCase="'group'">
+                    <app-groups
+                    [iSubscribed]="iSubscribed"
+                    [userUuid]="(user$|async)?.uuid"
+                    [groupUuid]="(group$|async)?.uuid"
+                    ></app-groups>
+                </ng-container>
+                <ng-container *ngSwitchCase="'home'">
+                    <app-communications [iSubscribed]="iSubscribed"
+                    [userUuid]="(user$|async)?.uuid"
+                    [groupUuid]="(group$|async)?.uuid"
+                    ></app-communications>
+                </ng-container>
+            </ng-container>
         </div>
         <div class="col-lg-2 col-md-2 col-12">
            <app-notifications></app-notifications>
