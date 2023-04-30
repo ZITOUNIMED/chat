@@ -5,7 +5,7 @@ import { environment } from "src/environments/environment";
 import { Message } from "../models/message.model";
 import { PostMessage } from "../models/post-message";
 import { Store } from "@ngrx/store";
-import { AppState } from "../store/states/app.state";
+import { AppState } from "../store/app.state";
 
 @Injectable({
     providedIn: 'root'

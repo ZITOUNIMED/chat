@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { AppState } from '../store/states/app.state';
+import { AppState } from '../store/app.state';
 import { Store } from '@ngrx/store';
 import { User } from '../models/user.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -8,7 +8,7 @@ import { AddGroupModalComponent } from '../modals/add-group-modal/add-group-moda
 import { GroupsService } from '../services/groups.service';
 import { AddGroup } from '../models/add-group.model';
 import { GroupModel } from '../models/group.model';
-import { GroupAcions } from '../store/states/group/actions';
+import { GroupAcions } from '../store/group/actions';
 
 @Component({
   selector: 'app-menu',
@@ -79,6 +79,19 @@ export class MenuComponent implements OnInit {
 
   openGroup(group: GroupModel): void {
     this.selectedGroupUuid = group.uuid;
+    this.store.dispatch(GroupAcions.SetGroupAction(group));
+  }
+
+  openGeneral(){
+    this.selectedGroupUuid = '';
+    const group: GroupModel ={
+      uuid: '',
+      users: [],
+      name: '',
+      adminUuid: '',
+      creatorUuid: '',
+      createdAt: 0
+    };
     this.store.dispatch(GroupAcions.SetGroupAction(group));
   }
 

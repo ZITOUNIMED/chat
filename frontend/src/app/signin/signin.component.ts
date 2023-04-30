@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
-import { AppState } from '../store/states/app.state';
-import { UserAcions } from '../store/states/user/actions';
+import { AppState } from '../store/app.state';
+import { UserAcions } from '../store/user/actions';
 
 @Component({
   selector: 'app-signin',

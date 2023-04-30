@@ -11,15 +11,16 @@
             <ng-container [ngSwitch]="page">
                 <ng-container *ngSwitchCase="'group'">
                     <app-groups
-                    [iSubscribed]="iSubscribed"
-                    [userUuid]="(user$|async)?.uuid"
-                    [groupUuid]="(group$|async)?.uuid"
+                        [iSubscribed]="iSubscribed"
+                        [userUuid]="(user$|async)?.uuid"
+                        [groupUuid]="(group$|async)?.uuid"
                     ></app-groups>
                 </ng-container>
                 <ng-container *ngSwitchCase="'home'">
-                    <app-communications [iSubscribed]="iSubscribed"
-                    [userUuid]="(user$|async)?.uuid"
-                    [groupUuid]="(group$|async)?.uuid"
+                    <app-communications 
+                        [iSubscribed]="iSubscribed"
+                        [userUuid]="(user$|async)?.uuid"
+                        [groupUuid]="(group$|async)?.uuid"
                     ></app-communications>
                 </ng-container>
             </ng-container>

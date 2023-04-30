@@ -1,5 +1,6 @@
 <h4>Notifications</h4>
-<div>Notif 1</div>
-<div>Notif 2</div>
-<div>Notif 3</div>
-<div>Notif 4</div>
+<div *ngFor="let notification of (notifications$|async)">
+    <label>{{notification.label}}</label>&nbsp;<em>at {{notification.timestamp | date: 'short'}}</em>
+    <div>{{notification.content}}</div>
+    <hr/>
+</div>

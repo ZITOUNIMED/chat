@@ -17,6 +17,9 @@
         </ul>
       </div>
     <hr>
+    <ul class="nav nav-pills flex-column groups">
+      <li class="title-groups button-item" (click)="openGeneral()"><strong>General Messages</strong></li>
+    </ul>
     <ul class="nav nav-pills flex-column mb-auto groups">
       <li class="title-groups"><strong>Groups:</strong>&nbsp;<button (click)="openAddGroupModal()" class="btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button></li>
       <li *ngFor="let group of groups">
@@ -25,17 +28,5 @@
           {{group.name}}
         </a>
       </li>
-     <!-- <li>
-        <a href="#" (click)="openGroup('test 1', 'test name 1')" class="nav-link link-dark" [ngClass]="{'active': selectedGroupUuid === 'test 1'}">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-          test 1
-        </a>
-      </li>
-      <li>
-        <a href="#" (click)="openGroup('test 2', 'test name 2')" class="nav-link link-dark" [ngClass]="{'active': selectedGroupUuid === 'test 2'}">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-          test 2
-        </a>
-      </li>-->
     </ul>
   </div>

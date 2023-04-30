@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/c
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { AppState } from "../store/states/app.state";
+import { AppState } from "../store/app.state";
 
 @Injectable({
     providedIn: 'root'
